@@ -1,0 +1,49 @@
+@host = https://localhost:7223/Connect4Api
+
+
+### diagonal_winner_a   expected = "A"
+get {{host}}/AXXXXXBAXXXXBAAXXXBBAAXXXXXXXXXXXXXXBXXXXX
+
+
+### diagonal_winner_b   expected = "B"
+get {{host}}/ABABXXABBXXXABXXXXBXXXXXXXXXXXXXXXXXAAXXXX
+
+
+### empty_board_no_winner   expected = "X"
+get {{host}}/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+### floating_piece_error    expected = 400, some pieces are floating..
+get {{host}}/XXAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+### full_board_no_winner    expected = "X"
+get {{host}}/ABABABBABABABABABABABABAABABABABABABABABAB
+
+
+### horizontal_winner_a     expected = "A"
+get {{host}}/AXXXXXAAXXXXAXXXXXAXXXXXBBBXXXBXXXXXXXXXXX
+
+
+### horizontal_winner_b     expected = "B"
+get {{host}}/BXXXXXBAXXXXBXXXXXBXXXXXAAAXXXXXXXXXXXXXXX
+
+
+### multiple_winner_error    expected = 400, multiple, independent winning chains found.
+get {{host}}/AXXXXXAAXXXXAXXXXXAXXXXXBBBBXXXXXXXXXXXXXX
+
+
+### ongoing_no_winner   expected = "X"
+get {{host}}/AAXXXXBBXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+### vertical_winner_a   expected = "A"
+get {{host}}/AXXXXXAXXXXXAXXXXXAXXXXXBBBXXXXXXXXXXXXXXX
+
+
+### vertical_winner_b   expected = "B"
+get {{host}}/AXXXXXAAXXXXAXXXXXXXXXXXBBBBXXXXXXXXXXXXXX
+
+
+### wrong_size_board_error     expected = 400, input length does not match board size.
+get {{host}}/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
